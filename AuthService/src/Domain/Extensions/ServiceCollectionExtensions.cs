@@ -1,3 +1,5 @@
+using Domain.Interfaces;
+using Domain.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,7 +9,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
     {
-       // services.AddScoped<IAuthenticationService, AuthenticationService>();
+       services.AddScoped<IAuthenticationService, AuthenticationService>();
 
         return services;
     }
