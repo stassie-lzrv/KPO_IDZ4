@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  auth-db:
+    image: postgres:14.4-alpine
+    container_name: auth-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: auth-service
+      POSTGRES_PASSWORD: auth-service
+      POSTGRES_DB: auth-service
+    volumes:
+      - ./AuthService/sql:/docker-entrypoint-initdb.d
+  
