@@ -13,3 +13,15 @@ services:
     volumes:
       - ./AuthService/sql:/docker-entrypoint-initdb.d
   
+  
+  rest-db:
+    image: postgres:14.4-alpine
+    container_name: rest-db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: rest-service
+      POSTGRES_PASSWORD: rest-service
+      POSTGRES_DB: rest-service
+    volumes:
+      - ./RestaurantService/sql:/docker-entrypoint-initdb.d
