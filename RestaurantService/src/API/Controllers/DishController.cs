@@ -1,13 +1,14 @@
 using API.Requests.Dish;
 using Domain.Entity;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-
+[Authorize(Roles="Admin,Manager")]
 public class DishController: ControllerBase
 {
     private readonly IDishRepository _dishRepository;

@@ -19,6 +19,24 @@ internal sealed class ErrorMiddleware
         {
             await _next.Invoke(context);
         }
+        catch (OrderNotFoundException e)
+        {
+            Console.WriteLine(e);
+            context.Response.StatusCode = (int) HttpStatusCode.NotFound;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                Message = e.Message
+            });
+        }
+        catch (DishNotFoundException e)
+        {
+            Console.WriteLine(e);
+            context.Response.StatusCode = (int) HttpStatusCode.NotFound;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                Message = e.Message
+            });
+        }
         catch (DomainException e)
         {
             Console.WriteLine(e);
